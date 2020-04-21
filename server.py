@@ -6,23 +6,32 @@ import socketserver
 import threading
 
 
+def game_entry():
+    yield "\r\n\r\nHello \r\n$Are you a robot (yes/no)?"
+
+
 def client_handler(client_socket,client_address,server):
-    
-    while True:
-        # self.request is the TCP socket connected to the client
-        data = client_socket.recv(1024).strip()
-        if len(data) > 0:
-            print("{} wrote:".format(client_address[0]))
-            print(data)
-            # just send back the same data, but upper-cased
-            client_socket.sendall(data.upper() + bytes(" "+threading.current_thread().name,"utf-8" ))
-        else:
-            break
+    client_socket.settimeout(30.0)
+    try:
+        f = client_socket.makefile("rw")
+        
+        generator = game_entry()
+        f.write(generator.send(None) )
+        f.flush()
+        while True:
+            line = f.readline().strip()
+            f.write(line.upper() + " "+threading.current_thread().name+"\n")
+            f.flush()
+    except Exception as e:
+        print(e)
+        
 
 
 #This is the socketserver funky way of joining threading with a tcp server
 class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
-    pass
+    daemon_threads = True
+    allow_reuse_address = True
+    
 
 if __name__ == "__main__":
 
@@ -32,17 +41,9 @@ if __name__ == "__main__":
     while True:
         #catch any shit and just keep trying
         try:
-            # Create the server object
-            server = ThreadedTCPServer((HOST, PORT), client_handler)
-      
-            try:
-                #start listening for clients. A new thread is spawned for each client
+
+            with ThreadedTCPServer((HOST,PORT),client_handler) as server:
                 server.serve_forever()
-            except KeyboardInterrupt:
-                break
-            finally:
-                server.shutdown()
-                server.server_close()
 
         except KeyboardInterrupt:
             break        
