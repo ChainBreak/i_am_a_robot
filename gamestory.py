@@ -33,16 +33,16 @@ def begin(g):
     g.ask(questions.Add(0,10) )
     g.print("Not bad. How about some harder ones.")
     
-    for i in range(10):
-        g.ask(questions.Add(-99999,99999) )
+    for i in range(5):
+        g.ask(questions.Add(-10,10) )
 
     ### SUM ###
     g.print("\nCalculate the sum of these integers.")
     g.ask(questions.Sum(0,5,3) )
-    g.ask(questions.Sum(0,10,20) )
+    g.ask(questions.Sum(0,10,10) )
     g.print("Not bad. How about some harder ones.")
-    for i in range(20):
-        g.ask(questions.Sum(-100,100,10) )
+    for i in range(5):
+        g.ask(questions.Sum(-10,10,10) )
 
     ### SORT ###
     g.print("\nLets try sorting some lists.")

@@ -1,3 +1,6 @@
+# TODO
+ - Check if client is a human or script and add typing delays accordingly
+
 # i_am_a_robot
 Text based game where you must use your coding skills to pass as a robot
 

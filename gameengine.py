@@ -20,7 +20,7 @@ class GameEngine(StreamRequestHandler):
 
     def print(self,text):
         text += "\n"
-        text.replace("\n","\n\r")
+        text = text.replace("\n","\n\r")
         self.wfile.write(text.encode("utf-8"))
 
     def input(self,text):
