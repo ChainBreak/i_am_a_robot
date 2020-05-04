@@ -74,3 +74,14 @@ class Sort(Question):
     def check(self,answer):
         answer = [int(v) for v in answer.split(" ")]
         return answer == self.sorted_num_list
+
+
+class Binary(Question):
+    name = "BINARY"
+    def create(self,min_value,max_value):
+        self.i = random.randint(min_value,max_value)
+
+        return f"{self.i:b}", f"{self.i}"
+        
+    def check(self,answer):
+        return int(answer) == self.i

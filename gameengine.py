@@ -13,10 +13,12 @@ class GameEngine(StreamRequestHandler):
         try:
             gamestory.begin(self)
         except WrongAnswer as e:
-            self.print("\n\n\n\n\n")
-            self.print("############ FAILED ############")
+            self.print("\n\n")
+            self.print("+--------------- TEST TERMINATED ---------------+")
             self.print(str(e))
             self.print("\n\n")
+            self.print("+------------------ THANK YOU ------------------+")
+            self.print("Thank you for your application.\nPlease try again.\n\n")
 
     def print(self,text):
         text += "\n"
@@ -30,10 +32,10 @@ class GameEngine(StreamRequestHandler):
 
     def ask(self,question_obj):
     
-        question_text = f"\n?{question_obj.name}: {question_obj.question}"
+        question_text = f"?{question_obj.name}: {question_obj.question}"
         
         answer = self.input(question_text)
-        
+        self.print("")
         correct = question_obj.try_check(answer)
 
         if not correct:
