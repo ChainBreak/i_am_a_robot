@@ -1,4 +1,6 @@
 import random
+from essential_generators import DocumentGenerator
+document_generator = DocumentGenerator()
 
 class Question():
     """This is a base class and is ment to be inherited"""
@@ -85,3 +87,34 @@ class Binary(Question):
         
     def check(self,answer):
         return int(answer) == self.i
+
+class Caesar(Question):
+    name = "CAESAR"
+
+    def map(self,c,shift):
+        a = ord("a")
+        z = ord("z")
+        A = ord("A")
+        Z = ord("Z")
+
+        c = ord(c)
+        if c >=a and c <= z:
+            c = ((c - a + shift) % 26) + a
+        if c >=A and c <= Z:
+            c = ((c - A + shift) % 26) + A
+        
+        return chr(c)
+
+
+    def create(self,plain_text=None):
+        shift = random.randint(1,25)
+        if plain_text == None:
+            self.plain_text= document_generator.sentence()
+        else:  
+            self.plain_text = plain_text
+        cipher_text = "".join([self.map(c,shift) for c in self.plain_text])
+
+        return f"{shift} {cipher_text}", f"{self.plain_text}"
+        
+    def check(self,answer):
+        return answer.strip() == self.plain_text.strip()

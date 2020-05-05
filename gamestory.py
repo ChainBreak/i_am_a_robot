@@ -86,6 +86,11 @@ def begin(g):
         g.ask(questions.Binary(0,2**i) )
 
 
+    ### CAESAR ###
+    g.print("\nDecode these Caesar Cipher.\nThe first integer specifies the shift")
+    g.ask(questions.Caesar("You have decoded this Caesar Ciphers"))
+    for i in range(10):
+        g.ask(questions.Caesar())
     
     g.print("+---------------- TEST COMPLETE ----------------+")
     g.print(f"|   NAME: {name:20}                  |")

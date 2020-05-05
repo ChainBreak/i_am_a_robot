@@ -10,18 +10,35 @@ f.write("start\n")
 f.write("tom\n")
 
 
+def caesar_map(c,shift):
+    a = ord("a")
+    z = ord("z")
+    A = ord("A")
+    Z = ord("Z")
+
+    c = ord(c)
+    if c >=a and c <= z:
+        c = ((c - a - shift) % 26) + a
+    if c >=A and c <= Z:
+        c = ((c - A - shift) % 26) + A
+    
+    return chr(c)
+
 while True:
     f.flush()
     line = f.readline()
     if len(line) == 0:
         break
     
-    print(line,end='')
+    print(line,end="") #,ord(line[0]),ord(line[-1])
     line = line.strip()
-    
+
+   
 
     if len(line) <= 0:
         continue
+
+    
 
     if line[0] == "?":
         i = line.find(":")
@@ -46,9 +63,16 @@ while True:
         elif question_type == "BINARY":
             v = int(line,2)
             response = str(v)
+
+        elif question_type == "CAESAR":
+            i = line.find(" ")
+            shift = int(line[:i])
+            cipher_text = line[i:].strip()
+            response = "".join([caesar_map(c,shift) for c in cipher_text])
+
         else:
             response = input()
-        print(response,end='')  
+        print(response)  
         f.write(response+"\n")
         
   

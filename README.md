@@ -18,6 +18,8 @@ https://cs.lmu.edu/~ray/notes/pythonnetexamples/
 - numerical outliers
 - rewarded with ascii art of penises
 - binary to int
+- https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+- Caeser Cipher
 
 ?NEGATIV:
 ?bot:
