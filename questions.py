@@ -1,6 +1,6 @@
 import random
-from essential_generators import DocumentGenerator
-document_generator = DocumentGenerator()
+# from essential_generators import DocumentGenerator
+# document_generator = DocumentGenerator()
 
 class Question():
     """This is a base class and is ment to be inherited"""
@@ -109,7 +109,7 @@ class Caesar(Question):
     def create(self,plain_text=None):
         shift = random.randint(1,25)
         if plain_text == None:
-            self.plain_text= document_generator.sentence()
+            self.plain_text= "This is a place holder"
         else:  
             self.plain_text = plain_text
         cipher_text = "".join([self.map(c,shift) for c in self.plain_text])
@@ -118,3 +118,6 @@ class Caesar(Question):
         
     def check(self,answer):
         return answer.strip() == self.plain_text.strip()
+
+
+

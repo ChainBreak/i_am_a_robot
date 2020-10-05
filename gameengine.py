@@ -13,12 +13,13 @@ class GameEngine(StreamRequestHandler):
         try:
             gamestory.begin(self)
         except WrongAnswer as e:
-            self.print("\n\n")
-            self.print("+--------------- TEST TERMINATED ---------------+")
+            self.print("\n"*50)
+            self.print("TERMINATED:")
             self.print(str(e))
             self.print("\n\n")
-            self.print("+------------------ THANK YOU ------------------+")
-            self.print("Thank you for your application.\nPlease try again.\n\n")
+            self.print("The elite persevere\nTry again\n\n")
+        except Exception as e:
+            print(e)
 
     def print(self,text):
         text += "\n"
