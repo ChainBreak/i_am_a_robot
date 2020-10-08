@@ -20,6 +20,11 @@ https://cs.lmu.edu/~ray/notes/pythonnetexamples/
 - binary to int
 - https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
 - Caeser Cipher
+- bin packing
+- copy the answer to a previous question
+- find the longest path between two leaves of a tree
+- solve sudoku
+- 
 
 ?NEGATIV:
 ?bot:
