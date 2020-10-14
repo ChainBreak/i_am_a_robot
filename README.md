@@ -22,8 +22,11 @@ https://cs.lmu.edu/~ray/notes/pythonnetexamples/
 - Caeser Cipher
 - XOR checksum
 - is prime
-
-
+- bin packing
+- copy the answer to a previous question
+- find the longest path between two leaves of a tree
+- solve sudoku
+- 
 
 ?NEGATIV:
 ?bot:
