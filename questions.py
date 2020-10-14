@@ -121,3 +121,46 @@ class Caesar(Question):
 
 
 
+class Prime(Question):
+    name = "PRIME"
+
+    # Generate lists of prime and composite numbers to choose from at question time
+    # Using Sieve of Eratosthenes Algorithm
+    # https://www.baeldung.com/java-generate-prime-numbers#4-using-sieve-of-eratosthenes
+    max_num = 1000000
+    prime_list = []
+    composite_list = []
+    is_prime_list = [True]*(max_num+1)
+
+    for p in range(2,int(max_num**0.5)+1):
+        if is_prime_list[p]:
+            for i in range(p*2,max_num+1,p):
+                is_prime_list[i] = False
+    
+    for i in range(2,max_num+1):
+        if is_prime_list[i]:
+            prime_list.append(i)
+        else:
+            composite_list.append(i)
+
+    del is_prime_list
+
+    def create(self):
+        self.is_prime = bool(random.randint(0,1))
+
+        if self.is_prime:
+            question_number = random.choice(Prime.prime_list)
+        else:
+            question_number = random.choice(Prime.composite_list)
+
+        return str(question_number), str(self.is_prime)
+
+    def check(self,answer):
+        return answer.strip() == str(self.is_prime)
+
+
+
+
+
+
+

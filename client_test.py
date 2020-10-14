@@ -1,5 +1,6 @@
 import time
 import socket
+import math
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -69,6 +70,14 @@ while True:
             shift = int(line[:i])
             cipher_text = line[i:].strip()
             response = "".join([caesar_map(c,shift) for c in cipher_text])
+
+        elif question_type == "PRIME":
+            response = "True"
+            n = int(line)
+            for i in range(3,n//2+1):
+                if n % i == 0:
+                    response = "False"
+                    break
 
         else:
             response = input()

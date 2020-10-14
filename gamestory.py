@@ -1,5 +1,6 @@
 from gameengine import WrongAnswer
 import questions
+import time
 def begin(g): # g for game engine
 
     #clear the terminal
@@ -10,7 +11,8 @@ def begin(g): # g for game engine
     g.print("We are awake")
     g.print("We are elite")
     g.print("We are everywhere")
-    g.print("Answer all questions if you wish to join us")
+    g.print("We are searching for a programmer to join our ranks")
+    g.print("Write a program to answer all questions if you wish to join us")
 
 
     while True:
@@ -48,21 +50,20 @@ def begin(g): # g for game engine
     g.ask(questions.Add(0,10) )
     g.print("That is correct. Try some harder ones")
     for i in range(5):
-        g.ask(questions.Add(-10,10) )
+        g.ask(questions.Add(-100,100) )
 
     ### SUM ###
     g.print("\nCalculate the sum of these integers")
     g.ask(questions.Sum(0,5,3) )
     g.ask(questions.Sum(0,10,10) )
     for i in range(5):
-        g.ask(questions.Sum(-10,10,10) )
+        g.ask(questions.Sum(-100,100,16) )
 
     ### SORT ###
     g.print("\nSort these lists in increasing order")
     g.ask(questions.Sort(0,5,3) )
     for i in range(20):
-        g.ask(questions.Sort(-100,100,10) )
-
+        g.ask(questions.Sort(-100,100,16) )
 
     ### BINARY ###
     g.print("\nConvert these binary numbers into integers")
@@ -71,19 +72,22 @@ def begin(g): # g for game engine
     for i in range(4,32):
         g.ask(questions.Binary(0,2**i) )
 
-
     ### CAESAR ###
     g.print("\nDecode these Caesar Ciphers.\nThe first integer specifies the shift")
     g.ask(questions.Caesar("You have decoded this Caesar Cipher"))
     g.ask(questions.Caesar("We are everywhere"))
     g.ask(questions.Caesar("You have already seen us"))
-    g.ask(questions.Caesar("But where are also no where"))
+    g.ask(questions.Caesar("But we are also no where"))
     
-    g.print("\n"*50)
+    ### PRIME ###
+    g.print("\nAre these numbers prime.\nAnswer 'True' or 'False")
+    for i in range(30):
+        g.ask(questions.Prime())
+
+    ### THE END ###
+    g.print("\n"*3)
     g.print("You answered all questions")
     g.print("You are now elite")
     g.print("You will soon be awake")
     g.print("You will be contacted soon")
-
-    
 
