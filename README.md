@@ -20,8 +20,14 @@ https://cs.lmu.edu/~ray/notes/pythonnetexamples/
 - binary to int
 - https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
 - Caeser Cipher
+- XOR checksum
+- is prime
+
+
 
 ?NEGATIV:
 ?bot:
 
 telnet 172.105.178.196 -r 1337
+
+ssh thomas@172.105.178.196
