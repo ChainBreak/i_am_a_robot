@@ -1,28 +1,63 @@
 from gameengine import WrongAnswer
 import questions
 import time
+import threading
+
+# https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+
+def slow_intro(g):
+    global stop_intro
+
+
+    sentence_list = [
+        " "," "," ",
+        "We are awake",
+        "We are elite",
+        "We are everywhere",
+        "We are searching for a programmer to join our ranks",
+        "Write a program to answer all the questions",
+        "We'll see you at the end"
+        "",
+        "Type 'start' or 'help':",
+    ]
+
+    for sentence in sentence_list:
+        if stop_intro: return
+        time.sleep(0.15*len(sentence))
+        g.print(sentence)
+        time.sleep(1)
+
+
+
 def begin(g): # g for game engine
-
-    #clear the terminal
     g.print("\n"*50)
+    g.print("""
+        _   _  _ _____ _____  __
+       /_\ | \| |_   _|_ _\ \/ /
+      / _ \| .` | | |  | | >  < 
+     /_/ \_\_|\_| |_| |___/_/\_\ 
+          THINGS WERE HACKED""")
 
-    ### INTRO ###
-
-    g.print("We are awake")
-    g.print("We are elite")
-    g.print("We are everywhere")
-    g.print("We are searching for a programmer to join our ranks")
-    g.print("Write a program to answer all questions if you wish to join us")
-
-
+    global stop_intro
+    stop_intro = False
+    intro_thread = threading.Thread(target=slow_intro,args=(g,),daemon=True)
+    intro_thread.start()
+    
+    ans = g.input("")
     while True:
-        ans = g.input("Type 'start' or 'help':")
+        
 
         if ans == "start":
+            stop_intro = True
             break
         if ans == "help":
+            stop_intro = True
             g.print("\n")
             g.print("HELP:")
+            g.print("  This server is just a plain text tcp socket connection.")
+            g.print("  Open a socket connection with your favourite programming ")
+            g.print("  language and read and write characters.")
+            g.print("")
             g.print("  |-Questions begin with '?'")
             g.print("  | |-This is the question type")
             g.print("  | |    |-These are the question arguments")
@@ -32,9 +67,11 @@ def begin(g): # g for game engine
             g.print("  eg. '3\\n' (don't forget the new line)")
             g.print("\n")
 
+        ans = g.input("Type 'start' or 'help':")
+
     
     while True:
-        name = g.input("Please enter a unique name:")
+        name = g.input("Please enter your name:")
 
         if len(name) < 3 or len(name) >20:
             g.print("your name must be between 3-20 characters")
@@ -42,8 +79,8 @@ def begin(g): # g for game engine
 
         break
 
-    g.print("\n"*50)
-    g.print("You are beginning a great journey")
+    g.print("\n"*5)
+    g.print("START")
 
     ### ADDITION ###
     g.print("\nAdd two numbers together")
@@ -85,9 +122,23 @@ def begin(g): # g for game engine
         g.ask(questions.Prime())
 
     ### THE END ###
-    g.print("\n"*3)
-    g.print("You answered all questions")
-    g.print("You are now elite")
-    g.print("You will soon be awake")
-    g.print("You will be contacted soon")
+    sentence_list = [
+        " "," "," ",
+        "You answered all the questions",
+        "You are now elite",
+        "You will soon be awake",
+        "You will be contacted soon",
+    ]
+
+    for sentence in sentence_list:
+        time.sleep(0.15*len(sentence))
+        g.print(sentence)
+        time.sleep(1)
+
+    g.print("""
+        _   _  _ _____ _____  __
+       /_\ | \| |_   _|_ _\ \/ /
+      / _ \| .` | | |  | | >  < 
+     /_/ \_\_|\_| |_| |___/_/\_\ 
+          THINGS WERE HACKED""")
 
