@@ -11,6 +11,8 @@ https://tecadmin.net/setup-autorun-python-script-using-systemd/
 https://cs.lmu.edu/~ray/notes/pythonnetexamples/
 
 # Ideas
+- Min and Max from a list
+- Index of substring
 - Say something a robot would say 101010010
 - n double negatives
 - current utc time
